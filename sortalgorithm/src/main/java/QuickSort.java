@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * 实现快排算法，下面的命名采用算法导论中文版的命名。
  */
@@ -28,5 +30,21 @@ public class QuickSort {
             quickSort(A, p, q - 1);
             quickSort(A, q + 1, r);
         }
+    }
+
+    public static void randomizedQuickSort(int[] A, int p, int r) {
+        if (p < r)
+        {
+            int q = randomizedPartition(A, p, r);
+            randomizedQuickSort(A, p, q - 1);
+            randomizedQuickSort(A, q + 1, r);
+        }
+    }
+
+    public static int randomizedPartition(int[] A, int p, int r) {
+        // todo: 验证下面一句是否会从 [p, r] 中随机算出一个数
+        int i = new Random().nextInt(r - p + 1) + p;
+        exchange(A, i, r);
+        return partition(A, p, r);
     }
 }

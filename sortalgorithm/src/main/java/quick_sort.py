@@ -1,3 +1,5 @@
+import random
+
 import numpy as np
 
 
@@ -26,6 +28,20 @@ def quick_sort(A: np.array, p: int, r: int):
         quick_sort(A, q + 1, r)
 
 
+def randomized_partition(A: np.array, p: int, r: int):
+    if p < r:
+        i = random.randint(p, r)
+        exchange(A, i, r)
+        return partition(A, p, r)
+
+
+def randomized_quick_sort(A: np.array, p: int, r: int):
+    if p < r:
+        q = randomized_partition(A, p, r)
+        randomized_partition(A, p, q - 1)
+        randomized_partition(A, q + 1, r)
+
+
 if __name__ == '__main__':
     test_partition = np.array([1, 2, 3, 4, 5, 6])
     length = len(test_partition)
@@ -40,3 +56,9 @@ if __name__ == '__main__':
     quick_sort(test_quick_sort, 0, length - 1)
     for i in range(length):
         assert (test_quick_sort[i] == expected_result[i])
+
+    test_randomized_quick_sort = [12, 16, 21, 93, 27, 51]
+    randomized_quick_sort(test_randomized_quick_sort, 0, length - 1)
+    for i in range(length):
+        assert (test_randomized_quick_sort[i] == expected_result[i])
+
