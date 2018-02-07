@@ -21,24 +21,17 @@ def quick_sort(arr, left, right):
         return
 
     # 有多个元素时，递归求解
-    middle_index = int((left + right) / 2)
-    middle_element = arr[middle_index]
+    elem = arr[left]
 
     i = 0
     j = 0
 
-    while i + j != right + 1 - left:
-        if arr[i + left] > middle_element:
-            swap(arr, i + left, right - j)
-            j += 1
-        if arr[i + left] < middle_element:
+    while i + j != right - left:
+        if arr[i + left + 1] >= elem:
+            swap(arr, i + left + 1, right - j)
+        else:
             i += 1
-        if arr[i + left] == middle_element:
-            first_middle_element = i + left
-            i += 1
-
-    # 注意 middle_element 必须出现在分割点上
-    swap(arr, first_middle_element, i + left - 1)
+    swap(arr, left, max(left + i - 1, left))
 
     quick_sort(arr, left, max(i - 2 + left, left))
     quick_sort(arr, min(i + left, right), right)
@@ -49,5 +42,6 @@ def test_quick_sort():
     length = len(test_arr)
 
     quick_sort(test_arr, 0, length - 1)
+    # 按照从小打到排序，每个元素都应该小于它后面的元素
     for i in range(length - 1):
         assert (test_arr[i] <= test_arr[i + 1])
