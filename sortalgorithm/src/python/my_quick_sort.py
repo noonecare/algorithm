@@ -6,7 +6,7 @@ python is more concise than Java. it's quicker to use python to implement algori
 python implements quick sort algorithm.
 """
 
-import numpy
+import numpy as np
 
 
 def swap(arr, i, j):
@@ -38,7 +38,7 @@ def quick_sort(arr, left, right):
 
 
 def test_quick_sort():
-    test_arr = numpy.random.rand(10)
+    test_arr = np.random.rand(10)
     length = len(test_arr)
 
     quick_sort(test_arr, 0, length - 1)
