@@ -37,9 +37,10 @@ def quick_sort(arr, left, right):
     quick_sort(arr, min(i + left, right), right)
 
 
-def test_quick_sort():
+def test_sort():
     test_arr = np.random.rand(10)
     length = len(test_arr)
+    print(test_arr)
 
     quick_sort(test_arr, 0, length - 1)
     # 按照从小打到排序，每个元素都应该小于它后面的元素
