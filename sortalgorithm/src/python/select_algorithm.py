@@ -22,7 +22,7 @@ def partition(arr, left, right):
 
 def random_partition(arr, left, right):
     """Shuffle before do partition."""
-    np.random.shuffle(arr[left:right])
+    np.random.shuffle(arr[left:right + 1])
     return partition(arr, left, right)
 
 
